@@ -16,16 +16,46 @@ for (var i = 0; i < 30; i++) {
 
 console.log(array);
 
-function newDrawing(x, y) {
-    drawing = new Drawing(x - 1, y - 1);
-    drawing.draw();
-}
 
-function Drawing(x, y) {
-    this.draw = function() {
-        ctx.fillStyle = "white";
-        ctx.fillRect(x * 10, y * 10, scale, scale);
+function draw() {
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array[i].length; j++) {
+            ctx.beginPath();
+            ctx.rect(i * scale, j * scale, scale, scale) 
+            ctx.fillStyle = array[i][j] ? "white" : "gray";
+            ctx.fill()
+        }
     }
+
+    requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+
+var mouseDown = 0;
+document.body.onmousedown = function() { 
+  ++mouseDown;
+}
+document.body.onmouseup = function() {
+  --mouseDown;
 }
 
-canvas.addEventListener("click", newDrawing(15, 30));
+function pen(event) {
+    let x = Math.floor(event.clientX / scale)
+    let y = Math.floor(event.clientY / scale)
+
+    array[x][y] = 1
+}
+
+let clicked = false
+canvas.addEventListener("mousedown", (e) => {
+    clicked = true
+    pen(e)
+});
+
+canvas.addEventListener("mouseup", () => {
+    clicked = false
+});
+
+canvas.addEventListener("mousemove", (e) => {
+    if(clicked) pen(e)
+});
