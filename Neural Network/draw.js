@@ -31,14 +31,6 @@ function draw() {
 }
 requestAnimationFrame(draw);
 
-var mouseDown = 0;
-document.body.onmousedown = function() { 
-  ++mouseDown;
-}
-document.body.onmouseup = function() {
-  --mouseDown;
-}
-
 function pen(event) {
     let x = Math.floor(event.clientX / scale)
     let y = Math.floor(event.clientY / scale)
