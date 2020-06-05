@@ -1,6 +1,8 @@
 const canvas = document.querySelector("canvas");
+const clearButton = document.getElementById("clear");
 const ctx = canvas.getContext("2d");
 const scale = 10;
+const arraySize = 28;
 const rows = canvas.height / scale;
 const columns = canvas.width / scale;
 
@@ -8,25 +10,23 @@ var drawing;
 var x;
 var y;
 
-var array = new Array(30);
+var array = new Array(arraySize);
 
-for (var i = 0; i < 30; i++) {
-    array[i] = new Array(30);
-}
-
-console.log(array);
-
+(function setup() {
+    for (var i = 0; i < arraySize; i++) {
+        array[i] = new Array(arraySize);
+    }
+}());
 
 function draw() {
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array[i].length; j++) {
             ctx.beginPath();
-            ctx.rect(i * scale, j * scale, scale, scale) 
+            ctx.rect(i * scale, j * scale, scale, scale)
             ctx.fillStyle = array[i][j] ? "white" : "gray";
             ctx.fill()
         }
     }
-
     requestAnimationFrame(draw);
 }
 requestAnimationFrame(draw);
@@ -49,5 +49,15 @@ canvas.addEventListener("mouseup", () => {
 });
 
 canvas.addEventListener("mousemove", (e) => {
-    if(clicked) pen(e)
+    if (clicked) pen(e)
+});
+
+canvas.addEventListener("mouseleave", () => {
+    clicked = false
+});
+
+clearButton.addEventListener("click", () => {
+    array = [];
+    setup();
+    ctx.clearRect(scale, scale, scale, scale);
 });
