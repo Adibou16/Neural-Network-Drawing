@@ -74,5 +74,5 @@ canvas.addEventListener("mouseleave", () => {
 
 
 
-//Clear Button Listener
+// Clear Button Listener
 clearButton.addEventListener("click", setup);
