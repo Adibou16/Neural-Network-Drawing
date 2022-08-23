@@ -35,6 +35,7 @@ function draw() {
             ctx.rect(i * scale, j * scale, scale, scale);
             ctx.fillStyle = array[i][j] ? "white" : "gray";
             ctx.fill();
+            console.log(array[0]);
         }
     }
     requestAnimationFrame(draw);
@@ -71,7 +72,6 @@ canvas.addEventListener("mousemove", (e) => {
 canvas.addEventListener("mouseleave", () => {
     clicked = false;
 });
-
 
 
 // Clear Button Listener
