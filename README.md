@@ -4,4 +4,4 @@
 - Completely in python.
 - UI is made with pygame library.
 - Neural network is made with tensorflow library.
-- Archives folder contains tests I have conducted to learn of to use turtles, pygame and some javascript. They do not impact the actual code.
+- Archives folder contains tests I have conducted to learn how to use turtles, pygame and some javascript. They do not impact the actual code.
